@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topographie Algérie - Matériel Topographique Professionnel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            display: flex;
+            width: 40%;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-bar button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .user-actions a {
+            color: white;
+            margin-left: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .user-actions i {
+            margin-right: 5px;
+        }
+
+        .user-actions a:hover {
+            color: var(--secondary);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--dark);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background-color: var(--secondary);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .dropdown-menu a {
+            color: var(--dark);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+        }
+
+        .btn-warning {
+            background-color: var(--warning);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+        }
+
+        /* Sections */
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 0.5rem auto;
+        }
+
+        /* Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-category {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            height: 2.5rem;
+            overflow: hidden;
+        }
+
+        .product-price {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Admin Interface */
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .admin-logo {
+            padding: 0 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 1rem;
+        }
+
+        .admin-menu {
+            list-style: none;
+        }
+
+        .admin-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-menu a {
+            display: flex;
+            align-items: center;
+            color: #ddd;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .admin-menu a:hover, .admin-menu a.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .admin-menu i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .admin-content {
+            flex: 1;
+            padding: 1.5rem;
+            background-color: #f0f2f5;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .stat-icon.orders {
+            background-color: var(--secondary);
+        }
+
+        .stat-icon.products {
+            background-color: var(--success);
+        }
+
+        .stat-icon.customers {
+            background-color: var(--warning);
+        }
+
+        .stat-icon.revenue {
+            background-color: var(--danger);
+        }
+
+        .stat-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .admin-table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status.pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status.completed {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status.shipped {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin: 1rem 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                width: 100%;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .admin-container {
+                flex-direction: column;
+            }
+
+            .admin-sidebar {
+                width: 100%;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Interface Client -->
+    <div id="client-interface">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="header-top">
+                    <a href="#" class="logo">
+                        <i class="fas fa-drafting-compass"></i>
+                        Topographie<span>Algérie</span>
+                    </a>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Rechercher un produit...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="user-actions">
+                        <a href="#" id="login-link"><i class="fas fa-user"></i> Connexion</a>
+                        <a href="#" id="register-link"><i class="fas fa-user-plus"></i> Inscription</a>
+                        <a href="#" id="cart-link"><i class="fas fa-shopping-cart"></i> Panier (0)</a>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <div class="container">
+                    <ul class="nav-menu">
+                        <li><a href="#"><i class="fas fa-home"></i> Accueil</a></li>
+                        <li class="dropdown">
+                            <a href="#"><i class="fas fa-tools"></i> Matériel Topographique</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Stations Total</a></li>
+                                <li><a href="#">Niveaux</a></li>
+                                <li><a href="#">GPS</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#"><i class="fas fa-cogs"></i> Accessoires</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Trépieds</a></li>
+                                <li><a href="#">Mires</a></li>
+                                <li><a href="#">Prises</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fas fa-tag"></i> Promotions</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> À propos</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Matériel Topographique de Haute Précision</h1>
+                <p>Découvrez notre gamme complète d'équipements topographiques pour professionnels et entreprises en Algérie</p>
+                <a href="#" class="btn">Découvrir nos produits</a>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="container">
+            <h2 class="section-title">Nos Catégories</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-satellite-dish" style="font-size: 4rem; color: #3498db;"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Matériel Topographique</div>
+                        <h3 class="product-title">Stations Total</h3>
+                        <p>Instruments de mesure électronique de haute précision</p>
+                        <a href="#" class="btn btn-primary">Voir les produits</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-ruler-combined" style="font-size: 4rem; color: #2ecc71;"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Matériel Topographique</div>
+                        <h3 class="product-title">Niveaux</h3>
+                        <p>Niveaux optiques, numériques et lasers</p>
+                        <a href="#" class="btn btn-primary">Voir les produits</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-map-marked-alt" style="font-size: 4rem; color: #e74c3c;"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Matériel Topographique</div>
+                        <h3 class="product-title">GPS</h3>
+                        <p>Récepteurs GPS/GNSS pour la topographie</p>
+                        <a href="#" class="btn btn-primary">Voir les produits</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-toolbox" style="font-size: 4rem; color: #f39c12;"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Accessoires</div>
+                        <h3 class="product-title">Trépieds & Accessoires</h3>
+                        <p>Trépieds, mires, prismes et autres accessoires</p>
+                        <a href="#" class="btn btn-primary">Voir les produits</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="container">
+            <h2 class="section-title">Produits Populaires</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=Station+Total" alt="Station Total Leica TS16">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Station Total</div>
+                        <h3 class="product-title">Station Total Robotisée Leica TS16</h3>
+                        <div class="product-price">850 000 DZD</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Détails</a>
+                            <a href="#" class="btn btn-success">Ajouter au panier</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/2ecc71/ffffff?text=Niveau" alt="Niveau Numérique">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Niveau</div>
+                        <h3 class="product-title">Niveau Numérique Trimble DiNi</h3>
+                        <div class="product-price">320 000 DZD</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Détails</a>
+                            <a href="#" class="btn btn-success">Ajouter au panier</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=GPS" alt="GPS Topographique">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">GPS</div>
+                        <h3 class="product-title">GPS Topographique Trimble R12i</h3>
+                        <div class="product-price">1 250 000 DZD</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Détails</a>
+                            <a href="#" class="btn btn-success">Ajouter au panier</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/f39c12/ffffff?text=Trépied" alt="Trépied Aluminium">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Trépied</div>
+                        <h3 class="product-title">Trépied Aluminium Professionnel</h3>
+                        <div class="product-price">45 000 DZD</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Détails</a>
+                            <a href="#" class="btn btn-success">Ajouter au panier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>Topographie Algérie</h3>
+                        <p>Votre spécialiste en matériel topographique en Algérie. Nous proposons des équipements de haute précision pour tous vos projets.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Catégories</h3>
+                        <ul>
+                            <li><a href="#">Stations Total</a></li>
+                            <li><a href="#">Niveaux</a></li>
+                            <li><a href="#">GPS Topographiques</a></li>
+                            <li><a href="#">Accessoires</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Liens utiles</h3>
+                        <ul>
+                            <li><a href="#">À propos</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Livraison</a></li>
+                            <li><a href="#">Paiement sécurisé</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> Alger, Algérie</li>
+                            <li><i class="fas fa-phone"></i> +213 XX XX XX XX</li>
+                            <li><i class="fas fa-envelope"></i> contact@topographie-algerie.dz</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 Topographie Algérie. Tous droits réservés.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Interface Administrateur (cachée par défaut) -->
+    <div id="admin-interface" style="display: none;">
+        <div class="admin-container">
+            <!-- Sidebar Admin -->
+            <div class="admin-sidebar">
+                <div class="admin-logo">
+                    <h2><i class="fas fa-drafting-compass"></i> Admin<span>Topographie</span></h2>
+                </div>
+                <ul class="admin-menu">
+                    <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a></li>
+                    <li><a href="#"><i class="fas fa-box"></i> Produits</a></li>
+                    <li><a href="#"><i class="fas fa-list"></i> Catégories</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> Commandes</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Clients</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Statistiques</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Paramètres</a></li>
+                    <li><a href="#" id="back-to-client"><i class="fas fa-arrow-left"></i> Retour au site</a></li>
+                </ul>
+            </div>
+
+            <!-- Admin Content -->
+            <div class="admin-content">
+                <div class="admin-header">
+                    <h1>Tableau de bord</h1>
+                    <div>
+                        <span>Admin User</span>
+                        <a href="#" class="btn btn-primary" style="margin-left: 1rem;">Déconnexion</a>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon orders">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Commandes en cours</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon products">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>42</h3>
+                            <p>Produits en stock</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon customers">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>287</h3>
+                            <p>Clients inscrits</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8.5M DZD</h3>
+                            <p>Chiffre d'affaires</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="admin-table">
+                    <h2 style="padding: 1rem; border-bottom: 1px solid #eee;">Dernières commandes</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Commande</th>
+                                <th>Client</th>
+                                <th>Date</th>
+                                <th>Montant</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#TA-2023-001</td>
+                                <td>Entreprise BTP Alger</td>
+                                <td>15/10/2023</td>
+                                <td>850 000 DZD</td>
+                                <td><span class="status pending">En attente</span></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary">Voir</a>
+                                    <a href="#" class="btn btn-warning">Modifier</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TA-2023-002</td>
+                                <td>Société Géomètres Oran</td>
+                                <td>14/10/2023</td>
+                                <td>1 250 000 DZD</td>
+                                <td><span class="status shipped">Expédiée</span></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary">Voir</a>
+                                    <a href="#" class="btn btn-warning">Modifier</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TA-2023-003</td>
+                                <td>Cabinet Topo Constantine</td>
+                                <td>12/10/2023</td>
+                                <td>320 000 DZD</td>
+                                <td><span class="status completed">Terminée</span></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary">Voir</a>
+                                    <a href="#" class="btn btn-warning">Modifier</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add Product Form -->
+                <div style="margin-top: 2rem;">
+                    <h2>Ajouter un nouveau produit</h2>
+                    <form style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-name">Nom du produit</label>
+                                <input type="text" id="product-name" class="form-control" placeholder="Ex: Station Total Leica TS16">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-category">Catégorie</label>
+                                <select id="product-category" class="form-control">
+                                    <option value="">Sélectionner une catégorie</option>
+                                    <option value="stations">Stations Total</option>
+                                    <option value="niveaux">Niveaux</option>
+                                    <option value="gps">GPS</option>
+                                    <option value="accessoires">Accessoires</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-price">Prix (DZD)</label>
+                                <input type="number" id="product-price" class="form-control" placeholder="Ex: 850000">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-stock">Stock</label>
+                                <input type="number" id="product-stock" class="form-control" placeholder="Ex: 5">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Description</label>
+                            <textarea id="product-description" class="form-control" rows="4" placeholder="Description du produit"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image">Image du produit</label>
+                            <input type="file" id="product-image" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">Ajouter le produit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Connexion</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Mot de passe</label>
+                    <input type="password" id="login-password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Se connecter</button>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <a href="#" id="switch-to-admin" style="color: var(--secondary);">Accès administrateur</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between client and admin interfaces
+        document.getElementById('login-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-modal').style.display = 'flex';
+        });
+
+        document.getElementById('switch-to-admin').addEventListener('click', function(e) {
+            e.preventDefault();
+            // In a real application, you would verify admin credentials
+            document.getElementById('client-interface').style.display = 'none';
+            document.getElementById('admin-interface').style.display = 'block';
+            document.getElementById('login-modal').style.display = 'none';
+        });
+
+        document.getElementById('back-to-client').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('admin-interface').style.display = 'none';
+            document.getElementById('client-interface').style.display = 'block';
+        });
+
+        // Close modal
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('login-modal').style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('login-modal')) {
+                document.getElementById('login-modal').style.display = 'none';
+            }
+        });
+
+        // Dropdown menus for mobile
+        document.querySelectorAll('.dropdown > a').forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const menu = this.nextElementSibling;
+                    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
